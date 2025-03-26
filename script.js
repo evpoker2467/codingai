@@ -6,9 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const response = document.getElementById('response');
     const responseContent = document.getElementById('responseContent');
 
-    // For testing purposes - replace with your API key
-    const API_KEY = 'YOUR_API_KEY_HERE'; // Replace this with your actual API key for testing
-
     submitBtn.addEventListener('click', async () => {
         const code = codeInput.value.trim();
         const prompt = promptInput.value.trim();
@@ -24,12 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.disabled = true;
 
         try {
-            const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+            const response = await fetch("/.netlify/functions/openrouter-proxy", {
                 method: "POST",
                 headers: {
-                    "Authorization": `Bearer ${API_KEY}`,
-                    "HTTP-Referer": window.location.origin,
-                    "X-Title": "Coding AI Assistant",
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
